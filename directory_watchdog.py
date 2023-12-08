@@ -4,6 +4,11 @@ import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import sys
+import os
+
+# please change the paths according to your needs
+folder_to_watch = "C:\\Users\\dslr\\Pictures\\dslrBooth2"
+replacement_image_path = "C:\\Users\\dslr\\Pictures\\luigi.png"
 
 class ImageHandler(FileSystemEventHandler):
     def on_created(self, event):
@@ -23,9 +28,6 @@ class ImageHandler(FileSystemEventHandler):
 
     # Define the replace_image function inside the ImageHandler class
     def replace_image(self, image_path):
-        # Assuming the replacement image is named "aP9eE3.jpg"
-        replacement_image_path = "C://Users//itm//Desktop//new_image//aP9eE3.jpg"
-
         try:
             # Read the contents of the replacement image
             with open(replacement_image_path, 'rb') as replacement_image_file:
@@ -40,7 +42,6 @@ class ImageHandler(FileSystemEventHandler):
             print(f"Error replacing image: {e}")
 
 if __name__ == "__main__":
-    folder_to_watch = "D://Fotobox//Bilder"
 
     event_handler = ImageHandler()
     observer = Observer()
